@@ -41,7 +41,7 @@ class StoriesController < ApplicationController
   # PATCH/PUT /stories/1.json
   def update
     respond_to do |format|
-      if current_user.admin?
+      if current_user.admin? || @story.user == current_user
         if @story.update(story_params)
           format.html { redirect_to @story, notice: 'Story was successfully updated.' }
           format.json { render :show, status: :ok, location: @story }
